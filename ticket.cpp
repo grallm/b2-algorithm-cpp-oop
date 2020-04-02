@@ -10,7 +10,7 @@ using namespace std;
 hash<string> strHash;
 Ticket::Ticket() {
   string notHashed = "";
-  for(int i=0; i < 10; i++)
+  for(int i=0; i < 5; i++)
     notHashed += notHashed + to_string(rand());
 
   size_t hashed = strHash(notHashed);
@@ -20,15 +20,13 @@ Ticket::Ticket() {
 /**
  * Ticket's destructor
  */
-Ticket::~Ticket() {
-
-}
+// Ticket::~Ticket() {}
 
 /**
  * @return ticket's ID, hash
  */
 size_t Ticket::hashCode() const {
-  return idCode;
+  return this->idCode;
 }
 
 /**
