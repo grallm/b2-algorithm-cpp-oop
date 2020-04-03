@@ -76,14 +76,3 @@ Luggage Consignee::recoverLuggage(Ticket ticket){
 
   return deposedLug;
 }
-
-void Consignee::check() {
-  cout << "Free " << freeLockers.size() << endl;
-  cout << freeLockers.front().luggage << " / " << freeLockers.back().luggage << endl << endl;
-
-  cout << "Used " << usedLockers.size() << endl;
-  for(auto l: usedLockers){
-    cout << l.second.luggage << endl;
-  }
-  cout << endl;
-}

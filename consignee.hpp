@@ -27,5 +27,18 @@ class Consignee {
     Ticket depositLuggage(Luggage luggage);
     Luggage recoverLuggage(Ticket ticket);
     
-    void check();
+    /** 
+     * Useful for debugging the Consignee and its Lockers
+    */
+    void check() {
+      cout << "***** Consignee check *****" << endl;
+      cout << "Free " << freeLockers.size() << endl;
+      cout << freeLockers.front().luggage << " / " << freeLockers.back().luggage << endl << endl;
+
+      cout << "Used " << usedLockers.size() << endl;
+      for(auto l: usedLockers){
+        cout << "Locker ID : " << l.second.id << " - " << l.second.luggage << endl;
+      }
+      cout << "****************************" << endl << endl;
+    }
 };
