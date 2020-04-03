@@ -6,8 +6,8 @@ using namespace std;
 /**
  * Construct a Consignee with size lockers
  * @param size number of lockers in the Consignee
- * @pre
- * @throw 
+ * @pre size > 0
+ * @throw invalid_argument if size < 1
  */
 Consignee::Consignee(int size) {
   if (size < 1) {
@@ -35,8 +35,8 @@ bool Consignee::isFull() {
 /**
  * Allows to put a Lugagge in a locker
  * @param luggage is the Luggage to deposit
- * @pre TODO
- * @throw TODO
+ * @pre Consignee shouldn't be full to add a luggage
+ * @throw length_error if the Consignee is full
  * @return the Ticket corresponding to the Luggage, allowing to get it back
  */
 Ticket Consignee::depositLuggage(Luggage luggage){
@@ -60,8 +60,8 @@ Ticket Consignee::depositLuggage(Luggage luggage){
 /**
  * Recover the Luggage given earlier with the corresponding Ticket
  * @param ticket given when deposed
- * @pre TODO
- * @throw TODO
+ * @pre ticket should have a corresponding Locker
+ * @throw out_of_range if nothing is stored with this ticket
  * @return Luggage given corresponding to ticket
  */
 Luggage Consignee::recoverLuggage(Ticket ticket){
