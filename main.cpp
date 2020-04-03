@@ -77,8 +77,39 @@ void testsConsignee(){
   cout << "Luggages deposited = Luggages recovered : " << condToString(luggge1 == recLuggge1 && luggge2 == recLuggge2 && luggge3 == recLuggge3) << endl << endl;
 }
 
+void testsErrorsConsignee() {
+  // Constructor size error
+  try {
+    Consignee(0);
+  }catch(exception const& err){
+    cout << err.what() << endl;
+  }
+  
+  // Adding a Luggage to a full Consignee
+  try {
+    Consignee cons = Consignee(1);
+    Luggage lug = "Lug";
+    cons.depositLuggage(lug);
+    cons.depositLuggage(lug);
+  }catch(exception const& err){
+    cout << err.what() << endl;
+  }
+  
+  // Recovering a Luggage with a Ticket but none corresponding
+  try {
+    Consignee cons = Consignee(1);
+    Luggage lug = "Lug";
+    Ticket ticket = cons.depositLuggage(lug);
+    cons.recoverLuggage(ticket);
+    cons.recoverLuggage(ticket);
+  }catch(exception const& err){
+    cout << err.what() << endl;
+  }
+}
+
 
 int main() {
   // testsTicket();
-  testsConsignee();
+  // testsConsignee();
+  testsErrorsConsignee();
 }

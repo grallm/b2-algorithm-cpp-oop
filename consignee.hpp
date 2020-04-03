@@ -20,7 +20,7 @@ class Consignee {
     unordered_map<Ticket, Locker> usedLockers;
 
   public:
-    Consignee(unsigned int size);
+    Consignee(int size);
     
     bool isFull();
     

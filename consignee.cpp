@@ -1,4 +1,5 @@
 #include "consignee.hpp"
+#include <stdexcept>
 
 using namespace std;
 
@@ -8,9 +9,13 @@ using namespace std;
  * @pre
  * @throw 
  */
-Consignee::Consignee(unsigned int size) {
+Consignee::Consignee(int size) {
+  if (size < 1) {
+    throw invalid_argument("ERR: the Consignee can't have less than 1 Locker");
+  }
+
   // Generating the number of Lockers asked and putting them in the free queue
-  for(size_t i=0; i<size; i++){
+  for(int i=0; i<size; i++){
     Locker lock;
     lock.id = i;
 
@@ -37,8 +42,7 @@ bool Consignee::isFull() {
 Ticket Consignee::depositLuggage(Luggage luggage){
   // Can't another luggage if the Consignee is full (no more Lockers)
   if (this->isFull()) {
-    // throw
-    cout << "ERR: Full" << endl;
+    throw length_error("ERR: you can't deposit a Luggage, no more Lockers are free");
   }
 
   // Remove the first Locker in the queue of free ones
@@ -63,7 +67,7 @@ Ticket Consignee::depositLuggage(Luggage luggage){
 Luggage Consignee::recoverLuggage(Ticket ticket){
   // No luggage corresponding to this Ticket if none are found in the usedLockers map
   if (usedLockers.find(ticket) == usedLockers.end()){
-    cout << "ERR: No luggage corresponding to ticket" << endl;
+    throw out_of_range("ERR: no luggage corresponding to this ticket");
   }
 
   // Stock the luggage to give bakc
