@@ -42,6 +42,14 @@ void testsConsignee(){
 
   // Creating a luggage and depositing it
   Luggage lug = "Luggage no 1";
+  Ticket ticket = cons.depositLuggage(lug);
+  cons.depositLuggage(lug);
+  cons.depositLuggage(lug);
+  cons.check();
+  cons.recoverLuggage(ticket);
+  cons.check();
+  cons.recoverLuggage(ticket);
+  cons.check();
 }
 
 
