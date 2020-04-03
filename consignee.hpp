@@ -30,7 +30,7 @@ class Consignee {
     /** 
      * Useful for debugging the Consignee and its Lockers
     */
-    void check() {
+    /* void check() {
       cout << "***** Consignee check *****" << endl;
       cout << "Free " << freeLockers.size() << endl;
       cout << freeLockers.front().luggage << " / " << freeLockers.back().luggage << endl << endl;
@@ -40,5 +40,5 @@ class Consignee {
         cout << "Locker ID : " << l.second.id << " - " << l.second.luggage << endl;
       }
       cout << "****************************" << endl << endl;
-    }
+    } */
 };

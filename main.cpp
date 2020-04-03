@@ -43,13 +43,13 @@ void testsConsignee(){
   // Creating a luggage, depositing it and recovering it
   Luggage lug = "Luggage no 1";
   Ticket ticket = cons1.depositLuggage(lug);
-  cout << "isFull when full : " << condToString(cons1.isFull()) << endl << endl;
+  cout << "isFull when full : " << condToString(cons1.isFull()) << endl;
   Luggage lug2 = cons1.recoverLuggage(ticket);
-  cout << "Luggage deposited = Luggage recovered : " << condToString(lug == lug2) << endl;
+  cout << "Luggage deposited = Luggage recovered : " << condToString(lug == lug2) << endl << endl;
 
   // Testing if the queue is working
-  // (Uncomment Consignee.check() to debug)
-  Consignee cons2 = Consignee(2);
+  // (Uncomment Consignee.check() in 'consignee.hpp' to debug)
+  /* Consignee cons2 = Consignee(2);
   Luggage lugg1 = "Lug1", lugg2 = "Lug2";
   Ticket tick1 = cons2.depositLuggage(lugg1);
   Ticket tick2 = cons2.depositLuggage(lugg2);
@@ -58,13 +58,23 @@ void testsConsignee(){
   cons2.recoverLuggage(tick1);
   tick1 = cons2.depositLuggage(lugg1);
   tick2 = cons2.depositLuggage(lugg2);
-  cons2.check();
+  cons2.check(); */
 
   // Testing with multiple luggages (3)
-  // Consignee cons3 = Consignee(3);
-  // Luggage lug1 = "Lug1", lug2 = "Lug2", lug3 = "Lug3";
-  // Ticket ticket1, ticket2, ticket3;
-
+  Consignee cons3 = Consignee(3);
+  Luggage luggge1 = "Lug1", luggge2 = "Lug2", luggge3 = "Lug3";
+  Ticket tickt1, tickt2, tickt3;
+  cout << "isFull before depositing : " << condToString(cons3.isFull()) << endl;
+  tickt1 = cons3.depositLuggage(luggge1);
+  tickt2 = cons3.depositLuggage(luggge2);
+  tickt3 = cons3.depositLuggage(luggge3);
+  cout << "isFull after depositing (should) : " << condToString(cons3.isFull()) << endl;
+  Luggage recLuggge1, recLuggge2, recLuggge3;
+  recLuggge1 = cons3.recoverLuggage(tickt1);
+  recLuggge2 = cons3.recoverLuggage(tickt2);
+  recLuggge3 = cons3.recoverLuggage(tickt3);
+  cout << "isFull after revoering all (shouldn't) : " << condToString(cons3.isFull()) << endl;
+  cout << "Luggages deposited = Luggages recovered : " << condToString(luggge1 == recLuggge1 && luggge2 == recLuggge2 && luggge3 == recLuggge3) << endl << endl;
 }
 
 
