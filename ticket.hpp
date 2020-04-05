@@ -1,3 +1,6 @@
+#ifndef TICKET_HPP
+#define TICKET_HPP
+
 #include <iostream>
 
 using namespace std;
@@ -25,3 +28,5 @@ template<> struct hash<Ticket> {
     return t.hashCode();
   }
 };
+
+#endif

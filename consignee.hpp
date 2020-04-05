@@ -1,3 +1,6 @@
+#ifndef CONSIGNEE_HPP
+#define CONSIGNEE_HPP
+
 #include <iostream>
 #include <queue>
 #include <unordered_map>
@@ -42,3 +45,5 @@ class Consignee {
       cout << "****************************" << endl << endl;
     } */
 };
+
+#endif
