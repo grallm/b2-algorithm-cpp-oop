@@ -10,9 +10,11 @@ using namespace std;
 hash<string> strHash;
 Ticket::Ticket() {
   string notHashed = "";
+  // Concatenate in a string 5 random numbers
   for(size_t i=0; i < 5; i++)
     notHashed += notHashed + to_string(rand());
 
+  // Hash the string previously created
   size_t hashed = strHash(notHashed);
   this->idCode = hashed;
 }
@@ -35,6 +37,7 @@ size_t Ticket::hashCode() const {
  * @return true if equal
  */
 bool Ticket::operator==(Ticket const& t) const {
+  // Compare tickets' hash, their ID
   return this->idCode == t.idCode;
 }
 
