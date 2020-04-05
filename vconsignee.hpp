@@ -34,6 +34,15 @@ class VConsignee {
     unsigned int nbLockers; // Global number of lockers
     vector<LockerType> freeLockers; // All locker groups ordered by volume
     unordered_map<Ticket, Locker> usedLockers; // Lockers used, full with a bagage
+
+  public:
+    VConsignee(vector< pair<unsigned int, unsigned int> >);
+    ~VConsignee();
+
+    bool isFull();
+
+    Ticket depositLuggage(Luggage luggage);
+    Luggage recoverLuggage(Ticket ticket);
 };
 
 #endif
