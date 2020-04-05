@@ -11,14 +11,13 @@ using namespace std;
 // Luggage
 typedef string Luggage;
 
-// Locker (where you deposit a Luggage)
-typedef struct {
-  unsigned int id;
-  Luggage luggage;
-} Locker;
-
 class Consignee {
   private:
+    // Locker (where you deposit a Luggage)
+    typedef struct {
+      unsigned int id;
+      Luggage luggage;
+    } Locker;
     queue<Locker> freeLockers;
     unordered_map<Ticket, Locker> usedLockers;
 
