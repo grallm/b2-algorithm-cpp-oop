@@ -36,13 +36,15 @@ class VConsignee {
     unordered_map<Ticket, Locker> usedLockers; // Lockers used, full with a bagage
 
   public:
-    VConsignee(vector< pair<unsigned int, unsigned int> >);
+    VConsignee(vector< pair<unsigned int, unsigned int> > lockers);
     ~VConsignee();
 
-    bool isFull();
+    // bool isFull();
 
-    Ticket depositLuggage(Luggage luggage);
-    Luggage recoverLuggage(Ticket ticket);
+    // Ticket depositLuggage(Luggage luggage);
+    // Luggage recoverLuggage(Ticket ticket);
+
+    void check();
 };
 
 #endif
