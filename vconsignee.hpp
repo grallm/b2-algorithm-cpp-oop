@@ -32,6 +32,7 @@ class VConsignee {
     } LockerType;
     
     unsigned int nbLockers; // Global number of lockers
+    unsigned int nbFreeLockers; // Global number of free lockers
     vector<LockerType> freeLockers; // All locker groups ordered by volume
     unordered_map<Ticket, Locker> usedLockers; // Lockers used, full with a bagage
 
@@ -44,7 +45,19 @@ class VConsignee {
     // Ticket depositLuggage(Luggage luggage);
     // Luggage recoverLuggage(Ticket ticket);
 
-    void check();
+    void check() {
+      cout << "***** VConsignee check *****" << endl;
+
+      cout << "Total number of lockers : " << nbLockers << endl;
+      cout << "Total number of free lockers : " << nbFreeLockers << endl;
+      cout << "Total number of volumes : " << freeLockers.size() << endl;
+      // Loop all LockerType
+      for(LockerType locker : freeLockers){
+        cout << "Vol: " << locker.volume << " - " << "Size: " << locker.number << " - " << "Queue size: " << (*(locker.lockers)).size() << endl;
+      }
+
+      cout << "****************************" << endl << endl;
+    }
 };
 
 #endif

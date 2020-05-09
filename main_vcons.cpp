@@ -11,7 +11,10 @@ string condToString(bool cond) {
 
 
 void testsVConsignee() {
-  vector<pair<unsigned int,unsigned int> > listLockers { make_pair<unsigned int, unsigned int>(50, 5), make_pair<unsigned int, unsigned int>(70, 5) };
+  vector<pair<unsigned int,unsigned int> > listLockers {
+    make_pair<unsigned int, unsigned int>(5, 50),
+    make_pair<unsigned int, unsigned int>(5, 70)
+  };
   VConsignee vcons = VConsignee(listLockers);
 
   vcons.check();

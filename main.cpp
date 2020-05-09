@@ -13,6 +13,8 @@ string condToString(bool cond) {
  * Tests of class Ticket
  */
 void testsTicket(){
+  cout << endl << "TESTS FOR CLASS Ticket" << endl;
+
   // Creating 2 tickets, which are different
   Ticket t1 = Ticket();
   Ticket t2 = Ticket();
@@ -34,6 +36,8 @@ void testsTicket(){
  * Tests of class Consignee
  */
 void testsConsignee(){
+  cout << endl << "TESTS FOR CLASS Consignee" << endl;
+
   // Creating a Consignee
   Consignee cons1 = Consignee(1);
 
@@ -78,6 +82,8 @@ void testsConsignee(){
 }
 
 void testsErrorsConsignee() {
+  cout << endl << "TESTS FOR CLASS Consignee METHODS EXCEPTIONS" << endl;
+
   // Constructor size error
   try {
     Consignee(0);
@@ -109,7 +115,10 @@ void testsErrorsConsignee() {
 
 
 int main() {
-  // testsTicket();
-  // testsConsignee();
+  cout << "INFORMATION" << endl;
+  cout << "The next log messages are tests to show the functionalities of classes Consignee and Ticket." << endl;
+  cout << "To understand each one, see main.cpp" << endl;
+  testsTicket();
+  testsConsignee();
   testsErrorsConsignee();
 }

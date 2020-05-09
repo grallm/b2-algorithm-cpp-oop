@@ -2,7 +2,9 @@ export CC=g++
 export CFLAGS=-W -Wall -std=c++11 -pedantic
 
 # Specify to compile main and use clean
-all: main_vcons main clean
+# all: main_vcons main clean
+# all: main clean
+all: main_vcons clean
 
 main_vcons: main_vcons.o vconsignee.o ticket.o
 	$(CC) -o main_vcons.exe main_vcons.o vconsignee.o ticket.o $(CFLAGS)
