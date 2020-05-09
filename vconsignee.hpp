@@ -24,7 +24,7 @@ class VConsignee {
       unsigned int volume;
       Luggage luggage;
     } Locker;
-    // Queue of all lockers with same volume with the number of them
+    // Queue of all lockers with same volume with the number of them available
     typedef struct {
       unsigned int volume;
       unsigned int number;
@@ -40,7 +40,7 @@ class VConsignee {
     VConsignee(vector< pair<unsigned int, unsigned int> > lockers);
     ~VConsignee();
 
-    // bool isFull();
+    bool isFull();
 
     // Ticket depositLuggage(Luggage luggage);
     // Luggage recoverLuggage(Ticket ticket);
