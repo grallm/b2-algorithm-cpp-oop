@@ -115,6 +115,9 @@ void testsErrorsConsignee() {
 
 
 int main() {
+  unsigned int test = 2;
+  unsigned int test2 = 3;
+  cout << round((test/test2)*1.0) << endl;
   cout << "INFORMATION" << endl;
   cout << "The next log messages are tests to show the functionalities of classes Consignee and Ticket." << endl;
   cout << "To understand each one, see main.cpp" << endl;

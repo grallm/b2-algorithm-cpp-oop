@@ -6,15 +6,10 @@
 #include <vector>
 #include <queue>
 #include <unordered_map>
+#include "luggage.hpp"
 #include "ticket.hpp"
 
 using namespace std;
-
-// Luggage
-typedef struct {
-  unsigned int volume;
-  string content;
-} Luggage;
 
 class VConsignee {
   private:
@@ -22,7 +17,7 @@ class VConsignee {
     typedef struct {
       unsigned int id;
       unsigned int volume;
-      Luggage luggage;
+      Luggage* luggage;
     } Locker;
     // Queue of all lockers with same volume with the number of them available
     typedef struct {

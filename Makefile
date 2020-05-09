@@ -9,7 +9,7 @@ all: main_vcons clean
 main_vcons: main_vcons.o vconsignee.o ticket.o
 	$(CC) -o main_vcons.exe main_vcons.o vconsignee.o ticket.o $(CFLAGS)
 
-main_vcons.o: main_vcons.cpp vconsignee.hpp
+main_vcons.o: main_vcons.cpp vconsignee.hpp luggage.hpp
 	$(CC) -c main_vcons.cpp $(CFLAGS)
 
 main: main.o consignee.o ticket.o

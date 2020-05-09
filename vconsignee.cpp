@@ -39,6 +39,7 @@ VConsignee::VConsignee(vector< pair<unsigned int, unsigned int> > lockers) {
 
 
       // ADD SORTED IN FREELOCKERS
+      // Binary search
       // CAREFUL IF SAME VOLUME
       (this->freeLockers).push_back(lType);
     }

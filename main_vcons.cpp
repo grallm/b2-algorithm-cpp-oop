@@ -10,6 +10,16 @@ string condToString(bool cond) {
 };
 
 
+void testsLuggages() {
+  cout << endl << "TESTS FOR CLASSES Luggage" << endl;
+
+  Luggage* trunk = new Trunk(10,5,5);
+  cout << "Trunk(10, 5, 5) volume: " << trunk->getVolume() << endl;
+  
+  Luggage* backpack = new Backpack(1, 11);
+  cout << "Backpack(1, 11) volume: " << backpack->getVolume() << endl;
+}
+
 void testsVConsignee() {
   // Creating a VConsignee with multiple lockers with 2 different volumes
   vector<pair<unsigned int,unsigned int> > listLockers {
@@ -30,5 +40,6 @@ void testsVConsignee() {
 
 
 int main() {
-  testsVConsignee();
+  // testsVConsignee();
+  testsLuggages();
 }
