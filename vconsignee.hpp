@@ -21,14 +21,13 @@ class VConsignee {
     } Locker;
     // Queue of all lockers with same volume with the number of them available
     typedef struct {
-      unsigned int volume;
       unsigned int number;
       queue<Locker>* lockers;
     } LockerType;
     
     unsigned int nbLockers; // Global number of lockers
     unsigned int nbFreeLockers; // Global number of free lockers
-    vector<LockerType> freeLockers; // All locker groups ordered by volume
+    unordered_map<unsigned int, LockerType> freeLockers; // All locker groups, each associated to their volume
     unordered_map<Ticket, Locker> usedLockers; // Lockers used, full with a bagage
 
   public:
@@ -36,6 +35,7 @@ class VConsignee {
     ~VConsignee();
 
     bool isFull();
+    bool hasFreeLockerForVolume(unsigned int volume);
 
     // Ticket depositLuggage(Luggage luggage);
     // Luggage recoverLuggage(Ticket ticket);
@@ -47,8 +47,8 @@ class VConsignee {
       cout << "Total number of free lockers : " << nbFreeLockers << endl;
       cout << "Total number of volumes : " << freeLockers.size() << endl;
       // Loop all LockerType
-      for(LockerType locker : freeLockers){
-        cout << "Vol: " << locker.volume << " - " << "Size: " << locker.number << " - " << "Queue size: " << (*(locker.lockers)).size() << endl;
+      for (pair<unsigned int, LockerType> lockerType : freeLockers) {
+        cout << "Vol: " << lockerType.first << " - " << "Size: " << lockerType.second.number << " - " << "Queue size: " << (*(lockerType.second.lockers)).size() << endl;
       }
 
       cout << "****************************" << endl << endl;

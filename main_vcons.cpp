@@ -35,11 +35,12 @@ void testsVConsignee() {
   // Checking if VConsignee is full when there is no locker
   cout << "isFull when 0 locker : " << condToString(vcons2.isFull()) << endl;
 
+  vcons.check();
   vcons2.check();
 }
 
 
 int main() {
-  // testsVConsignee();
-  testsLuggages();
+  testsVConsignee();
+  // testsLuggages();
 }
