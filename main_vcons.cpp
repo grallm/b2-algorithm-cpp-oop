@@ -71,11 +71,7 @@ void depositRecoverVConsignee() {
   }
 
   // Try to add a too big luggage
-  vector<pair<unsigned int,unsigned int> > listLockers2 {
-    make_pair<unsigned int, unsigned int>(1, 70)
-  };
-  cout << listLockers.size() << endl;
-  VConsignee vcons2 = VConsignee(listLockers2);
+  VConsignee vcons2 = VConsignee(listLockers);
   cout << "HERE" << endl;
   try {
     Luggage* trunk3 = new Trunk(80, 1, 1);

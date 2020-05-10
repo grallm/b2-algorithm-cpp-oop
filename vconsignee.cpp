@@ -31,6 +31,9 @@ VConsignee::VConsignee(vector< pair<unsigned int, unsigned int> > lockers) {
       }
       // Adding the queue in LockerType
       lType.lockers = (queue<Locker> *) malloc(sizeof(typeQueue));
+      cout << "HERE3" << endl;
+      cout << typeQueue.size() << endl;
+      cout << sizeof(*(lType.lockers)) << endl;
       *(lType.lockers) = typeQueue;
 
       // Insert pair (volume, LockerType): sorts automatically because of map type
