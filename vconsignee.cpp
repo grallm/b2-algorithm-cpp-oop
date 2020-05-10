@@ -30,8 +30,7 @@ VConsignee::VConsignee(vector< pair<unsigned int, unsigned int> > lockers) {
         idLocker++;
       }
       // Adding the queue in LockerType
-      lType.lockers = (queue<Locker> *) malloc(sizeof(typeQueue));
-      *(lType.lockers) = typeQueue;
+      lType.lockers = typeQueue;
 
       // Insert pair (volume, LockerType): sorts automatically because of map type
       (this->freeLockers).insert(make_pair(lockerNbVol.second, lType));
@@ -92,7 +91,7 @@ bool VConsignee::hasFreeLockerForVolume(unsigned int volume) {
  */
 Ticket VConsignee::depositLuggage(Luggage & luggage){
   unsigned int lugVolume = luggage.getVolume();
-  cout << lugVolume << endl;
+
   // Can't another luggage if the Consignee is full (no more Lockers)
   if (!this->hasFreeLockerForVolume(lugVolume)) {
     throw length_error("ERR: you can't deposit a Luggage, no more Lockers are free for this volume");
@@ -101,48 +100,30 @@ Ticket VConsignee::depositLuggage(Luggage & luggage){
   // Get the best available volume: perfect fit or greater
   map<unsigned int, LockerType>::iterator it_freeLockers = freeLockers.upper_bound(lugVolume);
 
-  // Locker that perfect fits luggage's volume
-  if (it_freeLockers != freeLockers.begin() && (--it_freeLockers)->first == lugVolume) {
-    // Remove from freeLockers the first locker and link it to the luggage
-    Locker locker = (*(it_freeLockers->second.lockers)).front();
-    (*(it_freeLockers->second.lockers)).pop();
-    locker.luggage = &luggage;
+  if (it_freeLockers != freeLockers.begin()) {
+    // Check if there is a locker that perfeclty fits luggage's volume
+    --it_freeLockers;
 
-    // Remove LockerType from freeLockers if no more lockers in queue
-    nbFreeLockers--;
-    if (--(it_freeLockers->second.number) == 0) {
-      freeLockers.erase(it_freeLockers);
+    if (it_freeLockers->first < lugVolume) {
+      // Get back to first volume greater
+      ++it_freeLockers;
     }
-
-    // Generate the ticket
-    Ticket ticket = Ticket();
-    (this->usedLockers).insert({ ticket, locker });
-
-    return ticket;
-
-  } else {
-    // Get back to first volume greater
-    ++it_freeLockers;
   }
 
-  // Remove the first Locker in the queue of free ones
-  /* Locker locker = (this->freeLockers).front();
-  (this->freeLockers).pop();
-  locker.luggage = luggage;
+  // Remove from freeLockers the first locker and link it to the luggage
+  Locker locker = it_freeLockers->second.lockers.front();
+  it_freeLockers->second.lockers.pop();
+  locker.luggage = &luggage;
 
-  // Generate a Ticket for this Locker and put it in the used ones
+  // Remove LockerType from freeLockers if no more lockers in queue
+  nbFreeLockers--;
+  if (--(it_freeLockers->second.number) == 0) {
+    freeLockers.erase(it_freeLockers);
+  }
+
+  // Generate the ticket
   Ticket ticket = Ticket();
   (this->usedLockers).insert({ ticket, locker });
 
-  return ticket; */
-}
-
-/**
- * Destruct the object VConsignee and all allocated variables
- */
-VConsignee::~VConsignee() {
-  // Deallocate all queue of Lockers
-  for (pair<unsigned int, LockerType> lockerType : freeLockers) {
-    delete lockerType.second.lockers;
-  }
+  return ticket;
 }

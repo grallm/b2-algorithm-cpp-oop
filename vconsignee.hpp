@@ -23,7 +23,7 @@ class VConsignee {
     // Queue of all lockers with same volume with the number of them available
     typedef struct {
       unsigned int number;
-      queue<Locker>* lockers;
+      queue<Locker> lockers;
     } LockerType;
     
     unsigned int nbLockers; // Global number of lockers
@@ -33,7 +33,6 @@ class VConsignee {
 
   public:
     VConsignee(vector< pair<unsigned int, unsigned int> > lockers);
-    ~VConsignee();
 
     bool isFull();
     bool hasFreeLockerForVolume(unsigned int volume);
@@ -49,7 +48,7 @@ class VConsignee {
       cout << "Total number of volumes : " << freeLockers.size() << endl;
       // Loop all LockerType
       for (pair<unsigned int, LockerType> lockerType : freeLockers) {
-        cout << "Vol: " << lockerType.first << " - " << "Size: " << lockerType.second.number << " - " << "Queue size: " << (*(lockerType.second.lockers)).size() << endl;
+        cout << "Vol: " << lockerType.first << " - " << "Size: " << lockerType.second.number << " - " << "Queue size: " << lockerType.second.lockers.size() << endl;
       }
 
       cout << "****************************" << endl << endl;
