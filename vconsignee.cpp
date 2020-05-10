@@ -14,9 +14,6 @@ VConsignee::VConsignee(vector< pair<unsigned int, unsigned int> > lockers) {
     nbLockers = nbFreeLockers = 0;
 
   } else {
-    // Reserve space for vector from a defined size to reduce the cost of adding elements
-    (this->freeLockers).reserve(lockers.size());
-
     int idLocker = 0;
     for(pair<unsigned int, unsigned int> lockerNbVol : lockers) {
       // Creating the LockerType, getting the number of lockers for a specific volume
@@ -37,7 +34,7 @@ VConsignee::VConsignee(vector< pair<unsigned int, unsigned int> > lockers) {
       lType.lockers = (queue<Locker> *) malloc(sizeof(typeQueue));
       *(lType.lockers) = typeQueue;
 
-      // Insert pair (volume, LockerType)
+      // Insert pair (volume, LockerType): sorts automatically because of map type
       (this->freeLockers).insert(make_pair(lockerNbVol.second, lType));
     }
 
@@ -70,7 +67,18 @@ bool VConsignee::hasFreeLockerForVolume(unsigned int volume) {
   if (this->isFull()) {
     return false;
   } else {
-    // Binary search to get the 
+    map<unsigned int, LockerType>::iterator it_freeLockers = freeLockers.upper_bound(volume);
+    
+    // If there is a greater locker there is space
+    if (volume <= it_freeLockers->first && (it_freeLockers->second).number > 0) {
+      return true;
+    // If there is a perfect fit locker available there is space
+    } else if (volume == (--it_freeLockers)->first && (it_freeLockers->second).number > 0) {
+      return true;
+    } else {
+      // End element and no volume greater
+      return false;
+    }
   }
 }
 

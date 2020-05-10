@@ -6,6 +6,7 @@
 #include <vector>
 #include <queue>
 #include <unordered_map>
+#include <map>
 #include "luggage.hpp"
 #include "ticket.hpp"
 
@@ -27,7 +28,7 @@ class VConsignee {
     
     unsigned int nbLockers; // Global number of lockers
     unsigned int nbFreeLockers; // Global number of free lockers
-    unordered_map<unsigned int, LockerType> freeLockers; // All locker groups, each associated to their volume
+    map<unsigned int, LockerType> freeLockers; // All locker groups, each associated to their volume
     unordered_map<Ticket, Locker> usedLockers; // Lockers used, full with a bagage
 
   public:
