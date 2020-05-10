@@ -38,7 +38,7 @@ class VConsignee {
     bool isFull();
     bool hasFreeLockerForVolume(unsigned int volume);
 
-    // Ticket depositLuggage(Luggage luggage);
+    Ticket depositLuggage(Luggage & luggage);
     // Luggage recoverLuggage(Ticket ticket);
 
     void check() {

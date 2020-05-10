@@ -48,8 +48,58 @@ void testsVConsignee() {
   vcons2.check();
 }
 
+void depositRecoverVConsignee() {
+  cout << endl << "TESTS FOR depositing AND recovering Luggage WITH CLASS VConsignee" << endl;
+
+  // Creating a VConsignee with only one locker
+  vector<pair<unsigned int,unsigned int> > listLockers {
+    make_pair<unsigned int, unsigned int>(1, 70)
+  };
+  VConsignee vcons = VConsignee(listLockers);
+
+  // Deposit a perfect fit luggage
+  Luggage* trunk = new Trunk(70, 1, 1);
+  vcons.depositLuggage(*trunk);
+  cout << endl << "Is VConsignee with 1 locker and 1 luggage full : " << condToString(vcons.isFull()) << endl;
+
+  // Try to add another luggage in a full VConsignee
+  try {
+    Luggage* trunk2 = new Trunk(70, 1, 1);
+    vcons.depositLuggage(*trunk2);
+  } catch (exception const& err) {
+    cout << endl << err.what() << endl;
+  }
+
+  // Try to add a too big luggage
+  vector<pair<unsigned int,unsigned int> > listLockers2 {
+    make_pair<unsigned int, unsigned int>(1, 70)
+  };
+  cout << listLockers.size() << endl;
+  VConsignee vcons2 = VConsignee(listLockers2);
+  cout << "HERE" << endl;
+  try {
+    Luggage* trunk3 = new Trunk(80, 1, 1);
+    vcons.depositLuggage(*trunk3);
+  } catch (exception const& err) {
+    cout << endl << err.what() << endl;
+  }
+
+  // vcons.check();
+
+}
+
 
 int main() {
-  testsVConsignee();
+  // testsVConsignee();
+  depositRecoverVConsignee();
   // testsLuggages();
+  /* map<int, int> test = {
+    {2,2},
+    {3,1},
+    {1,3}
+  };
+  auto it = test.upper_bound(2);
+  cout << it->second << endl;
+  cout << test.end()->second << endl; */
+  
 }
