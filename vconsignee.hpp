@@ -38,7 +38,7 @@ class VConsignee {
     bool hasFreeLockerForVolume(unsigned int volume);
 
     Ticket depositLuggage(Luggage & luggage);
-    // Luggage recoverLuggage(Ticket ticket);
+    Luggage* recoverLuggage(Ticket ticket);
 
     void check() {
       cout << "***** VConsignee check *****" << endl;

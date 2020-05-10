@@ -48,8 +48,8 @@ void testsVConsignee() {
   vcons2.check();
 }
 
-void depositVConsignee() {
-  cout << endl << "TESTS FOR depositing Luggage WITH CLASS VConsignee" << endl;
+void depositRecoverVConsignee() {
+  cout << "TESTS FOR depositing AND recovering Luggage WITH CLASS VConsignee" << endl;
 
   // Creating a VConsignee with only one locker
   vector<pair<unsigned int,unsigned int> > listLockers {
@@ -59,7 +59,7 @@ void depositVConsignee() {
 
   // Deposit a perfect fit luggage
   Luggage* trunk = new Trunk(70, 1, 1);
-  vcons.depositLuggage(*trunk);
+  Ticket ticket1 = vcons.depositLuggage(*trunk);
   cout << endl << "Is VConsignee with 1 locker and 1 luggage full : " << condToString(vcons.isFull()) << endl;
 
   // Try to add another luggage in a full VConsignee
@@ -67,7 +67,7 @@ void depositVConsignee() {
     Luggage* trunk2 = new Trunk(70, 1, 1);
     vcons.depositLuggage(*trunk2);
   } catch (exception const& err) {
-    cout << endl << err.what() << endl;
+    cerr << endl << err.what() << endl;
   }
 
   // Try to add a too big luggage
@@ -76,18 +76,31 @@ void depositVConsignee() {
     Luggage* trunk3 = new Trunk(80, 1, 1);
     vcons.depositLuggage(*trunk3);
   } catch (exception const& err) {
-    cout << endl << err.what() << endl;
+    cerr << endl << err.what() << endl;
   }
 
   // Adding a luggage with a volume less than locker's volume
   Luggage* trunk3 = new Trunk(60, 1, 1);
-  vcons2.depositLuggage(*trunk3);
+  Ticket ticket2 = vcons2.depositLuggage(*trunk3);
+
+  // Testing to recover trunks deposited and check if same that was deposited
+  Luggage* lugRecoverd = vcons2.recoverLuggage(ticket2);
+  cout << endl << "Same Luggage deposited/recovered : " << condToString(trunk3 == lugRecoverd) << endl;
+
+  // Exception when Ticket doesn't correspond to anu Luggage
+  try {
+    Ticket fakeTicket = Ticket();
+    vcons2.recoverLuggage(fakeTicket);
+  } catch(const exception& e) {
+    cerr << e.what() << '\n';
+  }
+  
 }
 
 
 int main() {
   // testsVConsignee();
-  depositVConsignee();
+  depositRecoverVConsignee();
   // testsLuggages();
   /* map<int, int> test = {
     {2,2},

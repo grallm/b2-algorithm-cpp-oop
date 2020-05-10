@@ -127,3 +127,41 @@ Ticket VConsignee::depositLuggage(Luggage & luggage){
 
   return ticket;
 }
+
+/**
+ * Recover the Luggage given earlier with the corresponding Ticket
+ * 
+ * @param ticket given when deposed
+ * @pre ticket should have a corresponding Locker
+ * @throw out_of_range if nothing is stored with this ticket
+ * @return Luggage* given corresponding to ticket
+ */
+Luggage* VConsignee::recoverLuggage(Ticket ticket){
+  // No luggage corresponding to this Ticket if none are found in the usedLockers map
+  if (usedLockers.find(ticket) == usedLockers.end()){
+    throw out_of_range("ERR: no luggage corresponding to this ticket");
+  }
+
+  // Stock the luggage to give bakc
+  Luggage* deposedLug = (this->usedLockers)[ticket].luggage;
+
+  // Remove the Locker from the used one and put it back in queue of lockers with this volume
+  Locker nowFreeLocker = (this->usedLockers)[ticket];
+  (this->usedLockers).erase(ticket);
+
+  map<unsigned int, LockerType>::iterator lockersThisVolume = freeLockers.find(nowFreeLocker.volume);
+  // Add to queue of lockers with this volume
+  if (lockersThisVolume != freeLockers.end()) {
+    lockersThisVolume->second.lockers.push(nowFreeLocker);
+    lockersThisVolume->second.number++;
+  } else {
+    // No more queue of lockers with this volume exists, recreate it
+    LockerType newLockerType;
+    newLockerType.number = 1;
+    newLockerType.lockers.push(nowFreeLocker);
+
+    freeLockers.insert(make_pair(nowFreeLocker.volume, newLockerType));
+  }
+
+  return deposedLug;
+}
