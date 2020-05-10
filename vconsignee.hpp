@@ -40,6 +40,9 @@ class VConsignee {
     Ticket depositLuggage(Luggage & luggage);
     Luggage* recoverLuggage(Ticket ticket);
 
+    /** 
+     * Useful for debugging the VConsignee and its Lockers
+    */
     void check() {
       cout << "***** VConsignee check *****" << endl;
 

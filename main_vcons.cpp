@@ -42,10 +42,6 @@ void testsVConsignee() {
   cout << "Space for strictly equal (70) : " << condToString(vcons.hasFreeLockerForVolume(70)) << endl;
   cout << "Space for strictly lower than max (51) : " << condToString(vcons.hasFreeLockerForVolume(51)) << endl;
   cout << "Space for strictly lower than min (49) : " << condToString(vcons.hasFreeLockerForVolume(49)) << endl;
-
-
-  vcons.check();
-  vcons2.check();
 }
 
 void depositRecoverVConsignee() {
@@ -59,7 +55,7 @@ void depositRecoverVConsignee() {
 
   // Deposit a perfect fit luggage
   Luggage* trunk = new Trunk(70, 1, 1);
-  Ticket ticket1 = vcons.depositLuggage(*trunk);
+  vcons.depositLuggage(*trunk);
   cout << endl << "Is VConsignee with 1 locker and 1 luggage full : " << condToString(vcons.isFull()) << endl;
 
   // Try to add another luggage in a full VConsignee
@@ -99,16 +95,11 @@ void depositRecoverVConsignee() {
 
 
 int main() {
-  // testsVConsignee();
+  cout << "INFORMATION" << endl;
+  cout << "The next log messages are tests to show the functionalities of classes VConsignee, Luggage and Ticket." << endl;
+  cout << "To understand each example, see main_vcons.cpp" << endl;
+  cout << "You can use VConsignee::check() to see the state of a VConsignee" << endl;
+  testsVConsignee();
   depositRecoverVConsignee();
-  // testsLuggages();
-  /* map<int, int> test = {
-    {2,2},
-    {3,1},
-    {1,3}
-  };
-  auto it = test.upper_bound(1);
-  // cout << (--it)->second << endl;
-  cout << it->second << endl; */
-  
+  testsLuggages();
 }
